@@ -1,0 +1,650 @@
+/* --- BASE & RESET --- */
+* {
+  margin: 0; /* Elimina márgenes por defecto */
+  padding: 0; /* Elimina padding por defecto */
+  box-sizing: border-box; /* Incluye padding y border en el ancho total */
+}
+
+html, /* Selecciona el elemento raíz de la página */
+body {
+  /* Y el cuerpo de la página */
+  width: 100%; /* El ancho total no puede exceder el 100% de la ventana de navegación. */
+  overflow-x: hidden; /* Oculta cualquier barra de desplazamiento horizontal no deseada. */
+}
+
+body {
+  font-family: "Poppins", sans-serif; /* Fuente principal */
+  line-height: 1.6; /* Altura de línea legible */
+  color: #020202; /* Color de texto general */
+  background-color: #f0f4f8; /* Color de fondo general más claro, similar al blanco azulado de la imagen */
+  display: flex; /* Flex para layout principal */
+  flex-direction: column; /* Apila contenido verticalmente */
+  min-height: 100vh; /* Ocupa toda la altura de la ventana */
+}
+
+/* --- UTILITIES (Botones) --- */
+.btn-primary {
+  background-color: #007bff; /* Azul primario */
+  color: white; /* Texto blanco */
+  padding: 10px 20px; /* Espaciado interno */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor pointer al pasar */
+  font-weight: 500; /* Grosor de fuente */
+  transition: background-color 0.3s ease; /* Animación de hover */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Azul más oscuro al hover */
+}
+
+.btn-secondary {
+  background-color: #007bff; /* Color de fondo */
+  color: white; /* Color del texto */
+  padding: 12px 25px; /* Espaciado interno */
+  border: none; /* Sin borde */
+  border-radius: 8px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor pointer al pasar */
+  font-weight: 500; /* Grosor de fuente */
+  font-size: 1.1em; /* Tamaño de fuente */
+  transition: background-color 0.3s ease; /* Animación de hover */
+}
+
+.btn-secondary:hover {
+  background-color: #0056b3; /* Azul más oscuro al hover */
+}
+
+.btn-card {
+  background-color: #e0f2fe; /* Azul muy claro */
+  color: #007bff; /* Color de texto azul */
+  padding: 8px 15px; /* Espaciado interno */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor pointer al pasar */
+  font-weight: 500; /* Grosor de fuente */
+  font-size: 0.9em; /* Tamaño de fuente pequeño */
+  transition: background-color 0.3s ease; /* Animación de hover */
+}
+
+.btn-card:hover {
+  background-color: #cce7ff; /* Color al pasar el cursor */
+}
+
+/* --- NAVBAR --- */
+.navbar {
+  display: flex; /* Flex horizontal */
+  justify-content: space-between; /* Separar elementos a extremos */
+  align-items: center; /* Centrar verticalmente */
+  padding: 15px 5%; /* Espaciado lateral */
+  background-color: rgba(255, 255, 255, 0.429); /* Fondo blanco */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra ligera */
+  z-index: 1000; /* Encima de otros elementos */
+  opacity: 0.8px;
+}
+
+.navbar-logo {
+  display: flex; /* Logo y texto juntos */
+  align-items: center; /* Centrado vertical */
+  font-size: 1.4em; /* Tamaño de fuente del texto del logo */
+  font-weight: 600; /* Grosor de fuente */
+  color: #333; /* Color de texto */
+}
+
+.navbar-logo .logo-image {
+  height: 35px; /* Tamaño del logo */
+  margin-right: 8px; /* Separación del texto */
+}
+
+.navbar-logo .logomin-text {
+  color: #134679;
+  font-size: 18px;
+}
+
+.navbar-nav {
+  display: flex; /* Lista de links horizontal */
+  gap: 30px; /* Espacio entre items */
+}
+
+.nav-item {
+  text-decoration: none; /* Sin subrayado */
+  color: #555; /* Color de texto */
+  font-weight: 500; /* Grosor de fuente */
+  padding: 5px 0; /* Espaciado vertical */
+  position: relative; /* Para la línea activa */
+  transition: color 0.3s ease; /* Animación de color */
+}
+
+.nav-item:hover {
+  color: #007bff; /* Color azul al pasar el cursor */
+}
+
+.nav-item.active {
+  color: #007bff; /* Color azul para el item activo */
+  font-weight: 600; /* Más grosor para el activo */
+}
+
+.nav-item.active::after {
+  content: ""; /* Crea un elemento de línea */
+  position: absolute; /* Posicionamiento absoluto */
+  bottom: -5px; /* Debajo del texto */
+  left: 0; /* Inicia a la izquierda */
+  width: 100%; /* Cubre todo el ancho del item */
+  height: 3px; /* Grosor de la línea */
+  background-color: #007bff; /* Color azul de la línea */
+  border-radius: 2px; /* Bordes redondeados */
+}
+
+.navbar-actions {
+  display: flex; /* Flex horizontal */
+  align-items: center; /* Centrado vertical */
+  gap: 20px; /* Espacio entre elementos */
+}
+
+/* --- HERO SECTION - IMAGEN COMPLETA CON TEXTO SUPERPUESTO --- */
+.hero-section {
+  position: relative; /* Para posicionar la imagen de fondo */
+  display: flex; /* Flexbox para el contenido */
+  align-items: center; /* Centra verticalmente el contenido */
+  height: 600px; /* Altura fija de la sección */
+  padding: 0; /* Sin padding */
+  overflow: hidden; /* Oculta partes de la imagen que se desborden */
+}
+
+.hero-content {
+  position: relative; /* Posicionamiento relativo */
+  z-index: 10; /* Se mantiene sobre la imagen */
+  text-align: left; /* Alineación del texto */
+  color: #fff; /* Color de texto blanco */
+  padding: 80px 5%; /* Espaciado del contenido */
+  max-width: 600px; /* Ancho máximo del bloque de texto */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sombra para mejor legibilidad */
+}
+
+.hero-subtitle {
+  font-size: 0.9em; /* Tamaño de fuente */
+  font-weight: 500; /* Grosor de fuente */
+  color: #90caf9; /* Color azul claro */
+  margin-bottom: 10px; /* Margen inferior */
+  text-transform: uppercase; /* Texto en mayúsculas */
+  letter-spacing: 1px; /* Espaciado entre letras */
+}
+
+.hero-title {
+  font-size: 3.5em; /* Tamaño de fuente grande */
+  font-weight: 700; /* Grosor de fuente negrita */
+  margin-bottom: 20px; /* Margen inferior */
+  line-height: 1.1; /* Altura de línea ajustada */
+  color: #fff; /* Color blanco */
+}
+
+.hero-description {
+  font-size: 1.1em; /* Tamaño de fuente */
+  color: #e3f2fd; /* Color blanco azulado */
+  margin-bottom: 30px; /* Margen inferior */
+}
+
+/* --- HERO IMAGE - FONDO COMPLETO --- */
+.hero-image {
+  position: absolute; /* Posicionamiento absoluto para ser el fondo */
+  top: 0; /* Arriba */
+  left: 0; /* Izquierda */
+  width: 100%; /* Ocupa todo el ancho */
+  height: 100%; /* Ocupa toda la altura */
+  z-index: 1; /* Detrás del contenido */
+}
+
+.hero-illustration-img {
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  height: 100%; /* Ocupa toda la altura del contenedor */
+  object-fit: cover; /* Cubre el contenedor recortando si es necesario */
+  object-position: center; /* Centra la imagen */
+  display: block; /* Elimina espacio debajo de la imagen */
+}
+
+/* Overlay opcional para mejor legibilidad del texto */
+.hero-section::before {
+  content: ""; /* Crea un pseudo-elemento */
+  position: absolute; /* Posicionamiento absoluto */
+  top: 0; /* Arriba */
+  left: 0; /* Izquierda */
+  width: 100%; /* Ocupa todo el ancho */
+  height: 100%; /* Ocupa toda la altura */
+  background: linear-gradient(
+    /* Degradado para oscurecer */ 90deg,
+    /* Dirección del degradado */ rgba(0, 0, 0, 0.5) 0%,
+    /* Negro semi-transparente en el inicio */ rgba(0, 0, 0, 0.2) 50%,
+    /* Menos opacidad en el centro */ rgba(0, 0, 0, 0) 100%
+      /* Transparente al final */
+  );
+  z-index: 5; /* Entre la imagen y el contenido */
+}
+
+/* --- RESPONSIVE HERO OPTIMIZADO --- */
+@media (max-width: 1024px) {
+  .hero-section {
+    height: 600px; /* Reduce la altura en tablets */
+  }
+
+  .hero-content {
+    max-width: 100%; /* Ocupa todo el ancho */
+    text-align: center; /* Centra el texto */
+    padding: 60px 5%; /* Espaciado */
+  }
+
+  .hero-section::before {
+    background: rgba(
+      0,
+      0,
+      0,
+      0.4
+    ); /* Fondo semi-oscuro uniforme para móviles */
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-section {
+    height: 500px; /* Reduce más la altura en móviles */
+  }
+
+  .hero-title {
+    font-size: 2.5em; /* Ajusta tamaño del título */
+  }
+
+  .hero-description {
+    font-size: 1em; /* Ajusta tamaño del texto */
+  }
+
+  .hero-subtitle {
+    font-size: 0.8em; /* Ajusta tamaño del subtítulo */
+  }
+
+  .hero-content {
+    padding: 40px 5%; /* Menos padding en móviles */
+  }
+}
+
+/* --- SERVICES SECTION --- */
+.services-section {
+  margin-top: -35px;
+  padding: 60px 5%; /* Espaciado interno de la sección */
+  padding-bottom: 1px;
+  text-align: center; /* Alinea el subtítulo y el título */
+  /* Fondo con degradado diagonal de blanco, gris y blanco */
+  background: linear-gradient(
+    135deg,
+    rgb(230, 243, 248) 50%,
+    /* Gris semi-transparente en el medio */ rgba(252, 252, 252, 0.705) 100%
+      /* Blanco casi opaco al final */
+  );
+}
+
+.section-title {
+  /* CAMBIO CLAVE: Aplicar Oswald */
+  font-family: "Oswald", sans-serif;
+  font-size: 2.6em;
+  font-weight: 700; /* Puedes mantener el 700, aunque Fjalla One solo tiene un peso (400) */
+  color: #2f2f2faa;
+  margin-bottom: 5px;
+}
+
+.section-subtitle {
+  font-size: 1.1em; /* Tamaño de fuente */
+  color: #555; /* Color de texto */
+  margin-bottom: 50px; /* Margen inferior grande */
+  max-width: 700px; /* Ancho máximo */
+  margin-left: auto; /* Centrado horizontal */
+  margin-right: auto; /* Centrado horizontal */
+}
+
+.service-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.card {
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(95, 95, 95, 0.658);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(224, 231, 238, 0.5);
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Se levanta un poco */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Sombra más grande al pasar el cursor */
+}
+
+/* Contenedor del ícono */
+.card-icon {
+  width: 100%; /* Ocupa todo el ancho disponible */
+  height: 200px; /* Altura del contenedor para el ícono */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 10px; /* Margen superior e inferior para centrar y separar */
+  position: relative; /* Necesario para el posicionamiento absoluto del 'glow' */
+  z-index: 1; /* Asegura que el icono esté por encima del 'glow' */
+}
+
+/* Imagen del ícono (Aumentamos el tamaño) */
+.card-icon img {
+  max-width: 250px; /* Aumenta el ancho máximo */
+  max-height: 250px; /* Aumenta la altura máxima */
+  object-fit: contain;
+  transform: translateY(
+    -20px
+  ); /* Elevamos un poco más la imagen para que flote sobre la tarjeta */
+  border-radius: 50%; /* Si la imagen es un círculo */
+}
+
+/* Nuevo estilo para el "glow" azul detrás del ícono */
+.card-icon::before {
+  content: ""; /* Crea un pseudo-elemento para el "glow" */
+  position: absolute; /* Posicionamiento absoluto con respecto a .card-icon */
+  width: 180px; /* Tamaño del "glow" */
+  height: 180px; /* Tamaño del "glow" */
+  background: radial-gradient(
+    circle,
+    rgba(150, 200, 250, 0.3) 0%,
+    rgba(150, 200, 250, 0) 70%
+  ); /* Degradado radial para el efecto de "glow" */
+  border-radius: 50%; /* Hace que el "glow" sea circular */
+  z-index: 0; /* Coloca el "glow" detrás del ícono */
+  filter: blur(25px); /* Aplica un desenfoque para suavizar el "glow" */
+  transform: translateY(
+    -20px
+  ); /* Ajusta la posición del "glow" para que siga al ícono */
+}
+
+.card h3 {
+  font-size: 22px; /* Tamaño del título de la tarjeta */
+  font-weight: 600; /* Grosor de fuente */
+  color: #333333c5; /* Color de texto */
+  margin-bottom: 15px; /* Margen inferior */
+}
+
+.card p {
+  font-size: 14px; /* Tamaño del texto descriptivo */
+  color: #666; /* Color de texto más suave */
+  margin-bottom: 20px; /* Margen inferior */
+}
+
+/* --- TERCERA SECCIÓN: QUIÉNES SOMOS --- */
+.sobre-nosotros-section {
+  background-color: rgba(133, 133, 133, 0.144);
+  padding: 80px 5%;
+  text-align: center;
+}
+
+.sobre-nosotros-content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  gap: 50px;
+  flex-direction: row;
+}
+
+/* Contenedor del texto */
+.quienesomos-text {
+  flex: 1;
+  max-width: 500px;
+  text-align: left;
+}
+
+.quienesomos-title {
+  font-size: 3.5em;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.quienesomos-subtitle {
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+.btn-quienessomos {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1em;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+
+.btn-quienessomos:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Imagen circular */
+.quienesomos-image {
+  flex-shrink: 0;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.quienesomos-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- SECCIÓN MISIÓN (imagen a la izquierda) --- */
+.mision-section {
+  background-color: rgba(133, 133, 133, 0.144);
+  padding: 80px 5%;
+  text-align: center;
+}
+
+.mision-content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  gap: 50px;
+  flex-direction: row;
+}
+
+/* Imagen circular de misión */
+.mision-image {
+  flex-shrink: 0;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.mision-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Contenedor del texto de misión */
+.mision-text {
+  flex: 1;
+  max-width: 500px;
+  text-align: left;
+}
+
+.mision-title {
+  font-size: 3.5em;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.mision-subtitle {
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+.btn-mision {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1em;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+
+.btn-mision:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* --- SECCIÓN VISIÓN (imagen a la derecha) --- */
+.vision-section {
+  background-color: rgba(133, 133, 133, 0.144);
+  padding: 80px 5%;
+  text-align: center;
+}
+
+.vision-content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  gap: 50px;
+  flex-direction: row;
+}
+
+/* Contenedor del texto de visión */
+.vision-text {
+  flex: 1;
+  max-width: 500px;
+  text-align: left;
+}
+
+.vision-title {
+  font-size: 3.5em;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.vision-subtitle {
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+.btn-vision {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1em;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+
+.btn-vision:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Imagen circular de visión */
+.vision-image {
+  flex-shrink: 0;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.vision-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- RESPONSIVE PARA TODAS LAS SECCIONES --- */
+/* Responsive para tablets */
+@media (max-width: 768px) {
+  .sobre-nosotros-content-wrapper,
+  .mision-content-wrapper,
+  .vision-content-wrapper {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .quienesomos-text,
+  .mision-text,
+  .vision-text {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .quienesomos-image,
+  .mision-image,
+  .vision-image {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 600px) {
+  .quienesomos-title,
+  .mision-title,
+  .vision-title {
+    font-size: 2em;
+  }
+
+  .quienesomos-subtitle,
+  .mision-subtitle,
+  .vision-subtitle {
+    font-size: 1em;
+  }
+
+  .quienesomos-image,
+  .mision-image,
+  .vision-image {
+    width: 200px;
+    height: 200px;
+  }
+}
